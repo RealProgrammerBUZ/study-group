@@ -1,0 +1,31 @@
+version: '3.7'
+# local 환경에서 사용되는 docker-compose 파일
+services:
+  mysql:
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    image: mysql:8.0.16
+    container_name: mysql_service
+    cap_add:  # 메모리 할당 에러 해결
+      - ALL
+    volumes:
+      - database_v:/var/lib/mysql
+    environment:  # 로컬에서는 이렇게 사용하고, prod에서는 os.get ~~
+      - MYSQL_DATABASE=study
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=study
+      - MYSQL_PASSWORD=1234
+    ports:
+      - 3306:3306
+
+  app:
+    build: ..
+    ports:
+      - 8888:8000
+    depends_on:
+      - mysql
+    volumes:
+      - ..:/app
+    working_dir: /app
+
+volumes:
+  database_v:
