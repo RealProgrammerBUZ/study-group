@@ -29,6 +29,9 @@ jobs:
           name: Install dependencies
           command: sudo apt-get install make
       - run:
+          name: check dir
+          command: ls
+      - run:
           name: change dir
           command: cd study
       - run:
