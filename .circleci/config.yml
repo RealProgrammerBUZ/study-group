@@ -21,10 +21,13 @@ jobs:
       - image: docker:17.05.0-ce-git
     # job 에 대해 실행할 내용을 작성
     steps:
-      # checkout를 통해 run 실행시킨다는 의미
+      # The first step, checkout, is a special step to check out the source code; this will be downloaded to the directory specified by working_directory.
       - checkout
       # This step helps you avoid the Docker-in-Docker problem. In fact, we’re setting up an environment that is isolated from the CI (or primary) container, then using the remote host’s Docker Engine.
       - setup_remote_docker
+      - run:
+          name: change dir
+          command: cd study
       - run:
           name: Run docker image
           command: docker build
