@@ -26,6 +26,9 @@ jobs:
       # This step helps you avoid the Docker-in-Docker problem. In fact, we’re setting up an environment that is isolated from the CI (or primary) container, then using the remote host’s Docker Engine.
       - setup_remote_docker
       - run:
+          name: Install dependencies
+          command: sudo apt-get install make
+      - run:
           name: change dir
           command: cd study
       - run:
