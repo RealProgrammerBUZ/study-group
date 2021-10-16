@@ -17,7 +17,7 @@ jobs:
   build-and-test: 
     # 빌드를 실행할 도커 이미지 설정
     docker:
-      # docker와 git 을 지원하는 도커 이미지
+      # This is a brand new Ubuntu-based image designed to install the bare minimum. The next-generation convenience images are based on this image.
       - image: cimg/base:2021.04
     # job 에 대해 실행할 내용을 작성
     steps:
@@ -29,14 +29,10 @@ jobs:
           name: Install dependencies
           command: sudo apt-get install make
       - run:
-          name: change dir
-          command: cd study
-      - run:
-          name: check dir
-          command: ls
-      - run:
           name: Run docker image
-          command: make up
+          command: |
+              cd study  
+              make up
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
