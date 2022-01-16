@@ -10,9 +10,9 @@ services:
     volumes:
       - database_v:/var/lib/mysql
     environment:  # 로컬에서는 이렇게 사용하고, prod에서는 os.get ~~
-      - MYSQL_DATABASE=study
+      - MYSQL_DATABASE=sdf
       - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_USER=study
+      - MYSQL_USER=sdf
       - MYSQL_PASSWORD=1234
     ports:
       - 3306:3306
